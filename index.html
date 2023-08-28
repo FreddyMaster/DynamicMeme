@@ -12,7 +12,7 @@
       width: 450px;
       height: 450px;
       background-image: url('template.png');
-    background-size: 100%; 
+      background-size: 100%; 
       text-align: center;
       position: relative;
     }
@@ -67,7 +67,24 @@
     .meme .top {
       top: 0;
     }
+
+    .center {
+      display: flex;
+      justify-content: center;
+    }
+
+    .share-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #7289DA;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
   <script>
     function changeText() {
       var currentTime = new Date();
@@ -86,12 +103,25 @@
       // Call the function again after 1 minute
       setTimeout(changeText, 60000);
     }
+
+    function shareImage() {
+      html2canvas(document.querySelector('.meme')).then(function(canvas) {
+        var image = canvas.toDataURL("image/png");
+        var link = document.createElement('a');
+        link.href = image;
+        link.download = 'meme.png';
+        link.click();
+      });
+    }
   </script>
 </head>
 <body onload="changeText()">
   <div class="meme">
     <p id="myText" class="bottom"></p>
     <p id="yesAJ" class="bottom">Yes AJ</p>
+  </div>
+  <div class="center">
+    <button class="share-button" onclick="shareImage()">Share on Discord</button>
   </div>
 </body>
 </html>
