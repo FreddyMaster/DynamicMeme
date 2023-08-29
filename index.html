@@ -84,44 +84,51 @@
       cursor: pointer;
     }
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
-  <script>
-    function changeText() {
-      var currentTime = new Date();
-      var currentHour = currentTime.getHours();
-      var currentMinute = currentTime.getMinutes();
-      var amPm = currentHour >= 12 ? "PM" : "AM";
-      
-      // Convert the hour to 12-hour format
-      currentHour = currentHour % 12 || 12;
-      
-      var textElement = document.getElementById("myText");
-      
-      // Change the text to represent the current time in 12-hour format with a new line after amPm
-      textElement.textContent = "Tim it's " + currentHour + ":" + currentMinute.toString().padStart(2, '0') + " " + amPm + ". " + "Time to play Overwatch 2";
-      
-      // Call the function again after 1 second
-      setTimeout(changeText, 1000);
-    }
+ <script>
+  function changeText() {
+    var currentTime = new Date();
+    var currentHour = currentTime.getHours();
+    var currentMinute = currentTime.getMinutes();
+    var amPm = currentHour >= 12 ? "PM" : "AM";
+    
+    // Convert the hour to 12-hour format
+    currentHour = currentHour % 12 || 12;
+    
+    var textElement = document.getElementById("myText");
+    
+    // Change the text to represent the current time in 12-hour format with a new line after amPm
+    textElement.textContent = "Tim it's " + currentHour + ":" + currentMinute.toString().padStart(2, '0') + " " + amPm + ". " + "Time to play Overwatch 2";
+    
+    // Call the function again after 1 second
+    setTimeout(changeText, 1000);
+  }
 
-    function shareImage() {
-      html2canvas(document.querySelector('.meme')).then(function(canvas) {
-        var image = canvas.toDataURL("image/png");
-        var link = document.createElement('a');
-        link.href = image;
-        link.download = 'meme.png';
-        link.click();
-      });
-    }
-  </script>
+  function shareImage() {
+    html2canvas(document.querySelector('.meme')).then(function(canvas) {
+      var image = canvas.toDataURL("image/png");
+      
+      var embedCode = `<iframe src="${window.location.href}" width="450" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>`;
+      
+      var link = document.createElement('a');
+      link.href = `https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&scope=bot&permissions=2048&embed=${encodeURIComponent(embedCode)}`;
+      link.target = "_blank";
+      link.innerText = "Embed on Discord";
+      
+      document.body.appendChild(link);
+    });
+  }
+  
+  // Call the changeText function when the page loads
+  changeText();
+</script>
 </head>
-<body onload="changeText()">
-  <div class="meme">
-    <p id="myText" class="bottom"></p>
-    <p id="yesAJ" class="bottom">Yes AJ</p>
-  </div>
-  <div class="center">
-    <button class="share-button" onclick="shareImage()">Share on Discord</button>
-  </div>
+<body>
+<div class="meme">
+  <p id="myText" class="bottom"></p>
+  <p id="yesAJ" class="bottom">Yes AJ</p>
+</div>
+<div class="center">
+  <button class="share-button" onclick="shareImage()">Generate Embed Code</button>
+</div>
 </body>
 </html>
