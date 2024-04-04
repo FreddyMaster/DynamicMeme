@@ -1,127 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Meme Image with Text Overlay</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    .meme {
-      margin: auto;
-      width: 450px;
-      height: 450px;
-      background-image: url('template.png');
-      background-size: 100%; 
-      text-align: center;
-      position: relative;
-    }
-
-    #myText {
-      position: absolute; 
-      left: 0;
-      right: 45%;
-      top: 70%;
-      margin: 15px 0;
-      padding: 0 5px;
-      font-family: impact;
-      font-size: 1.3em;
-      color: white;
-      letter-spacing: 1px;
-      text-shadow: 2px 2px 0 #000,
-                   -2px -2px 0 #000,
-                   2px -2px 0 #000,
-                   -2px 2px 0 #000,
-                   0px 2px 0 #000,
-                   2px 0px 0 #000,
-                   0px -2px 0 #000,
-                   -2px 0px 0 #000,
-                   2px 2px 5px #000;
-    }
-
-    #yesAJ {
-      position: absolute; 
-      right: 10%;
-      top: 70%;
-      margin: 15px 0;
-      padding: 0 5px;
-      font-family: impact;
-      font-size: 1.3em;
-      color: white;
-      letter-spacing: 1px;
-      text-shadow: 2px 2px 0 #000,
-                   -2px -2px 0 #000,
-                   2px -2px 0 #000,
-                   -2px 2px 0 #000,
-                   0px 2px 0 #000,
-                   2px 0px 0 #000,
-                   0px -2px 0 #000,
-                   -2px 0px 0 #000,
-                   2px 2px 5px #000;
-    }
-
-    .meme .bottom {
-      bottom: 0;
-    }
-
-    .meme .top {
-      top: 0;
-    }
-
-    .center {
-      display: flex;
-      justify-content: center;
-    }
-
-    .share-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #7289DA;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
-  <script>
-    function changeText() {
-      var currentTime = new Date();
-      var currentHour = currentTime.getHours();
-      var currentMinute = currentTime.getMinutes();
-      var amPm = currentHour >= 12 ? "PM" : "AM";
-      
-      // Convert the hour to 12-hour format
-      currentHour = currentHour % 12 || 12;
-      
-      var textElement = document.getElementById("myText");
-      
-      // Change the text to represent the current time in 12-hour format with a new line after amPm
-      textElement.textContent = "Tim it's " + currentHour + ":" + currentMinute.toString().padStart(2, '0') + " " + amPm + ". " + "Time to play Overwatch 2";
-      
-      // Call the function again after 1 second
-      setTimeout(changeText, 1000);
-    }
-
-    function shareImage() {
-      html2canvas(document.querySelector('.meme')).then(function(canvas) {
-        var image = canvas.toDataURL("image/png");
-        var link = document.createElement('a');
-        link.href = image;
-        link.download = 'meme.png';
-        link.click();
-      });
-    }
-  </script>
+ <title>Meme Image with Text Overlay</title>
+ <link rel="stylesheet" href="styles.css">
 </head>
 <body onload="changeText()">
-  <div class="meme">
-    <p id="myText" class="bottom"></p>
-    <p id="yesAJ" class="bottom">Yes AJ</p>
-  </div>
-  <div class="center">
-    <button class="share-button" onclick="shareImage()">Share on Discord</button>
-  </div>
+ <div class="meme">
+    <p id="myText"></p>
+    <p id="yesAJ">Yes AJ</p>
+ </div>
+ <div class="center">
+    <button class="share-button" onclick="shareImage()" aria-label="Share on Discord">Share on Discord</button>
+ </div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+ <script src="script.js"></script>
 </body>
 </html>

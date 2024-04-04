@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+   }
+   
+   .meme {
+    margin: auto;
+    width: 450px;
+    height: 450px;
+    background-image: url(https://i.imgflip.com/484iuh.png?a475608);
+    background-size: 100%; 
+    text-align: center;
+    position: relative;
+   }
+   
+   #myText, #yesAJ {
+    position: absolute; 
+    margin: 15px 0;
+    padding: 0 5px;
+    font-family: impact;
+    font-size: 1.3em;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 #000,
+                  -2px -2px 0 #000,
+                  2px -2px 0 #000,
+                  -2px 2px 0 #000,
+                  0px 2px 0 #000,
+                  2px 0px 0 #000,
+                  0px -2px 0 #000,
+                  -2px 0px 0 #000,
+                  2px 2px 5px #000;
+   }
+   
+   #myText {
+    left: 0;
+    right: 45%;
+    top: 70%;
+   }
+   
+   #yesAJ {
+    right: 10%;
+    top: 70%;
+   }
+   
+   .meme .bottom {
+    bottom: 0;
+   }
+   
+   .meme .top {
+    top: 0;
+   }
+   
+   .center {
+    display: flex;
+    justify-content: center;
+   }
+   
+   .share-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #7289DA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+   }
+   
